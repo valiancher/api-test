@@ -13,7 +13,7 @@ DB_PASSWORD=apiapp
 Copy the provided environment file to the root directory.
 
 ## Step 3: Install Dependencies
-Go to project root directory & execute:
+Go to project`s root directory & execute:
 ```sh
 composer install
 ```
