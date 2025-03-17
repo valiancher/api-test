@@ -46,7 +46,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&author=');
+        ])->get('/api/1/best-sellers/history?&author=&api-key=' . $api_key);
 
         $response->assertStatus(422)->assertJsonStructure([
             'message',
@@ -59,8 +59,7 @@ class HistoryTest extends TestCase
         $api_key = Str::random('32');
 
         $data = json_decode(file_get_contents(__DIR__ . '/resources/best_sellers_history_test_data.json'),true);
-        $requestArray = ['api-key' => $api_key, 'author' => 'abc'];
-        ksort($requestArray);
+        $requestArray = ['author' => 'abc', 'api-key' => $api_key];
         $cacheKey = md5(json_encode($requestArray));
 
         Cache::shouldReceive('has')
@@ -74,7 +73,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&author=abc');
+        ])->get('/api/1/best-sellers/history?author=abc&api-key=' . $api_key);
 
         $response
             ->assertStatus(200)
@@ -89,7 +88,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&isbn[]=123');
+        ])->get('/api/1/best-sellers/history?isbn[]=123&api-key=' . $api_key);
 
         $response->assertStatus(422)->assertJsonStructure([
             'message',
@@ -103,7 +102,6 @@ class HistoryTest extends TestCase
 
         $data = json_decode(file_get_contents(__DIR__ . '/resources/best_sellers_history_test_data.json'),true);
         $requestArray = ['api-key' => $api_key, 'isbn' => ['0871404427']];
-        ksort($requestArray);
         $cacheKey = md5(json_encode($requestArray));
 
         Cache::shouldReceive('has')
@@ -117,7 +115,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&isbn[]=0871404427');
+        ])->get('/api/1/best-sellers/history?isbn[]=0871404427&api-key=' . $api_key);
 
         $response
             ->assertStatus(200)
@@ -132,7 +130,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&title=');
+        ])->get('/api/1/best-sellers/history?title=&api-key=' . $api_key);
 
         $response->assertStatus(422)->assertJsonStructure([
             'message',
@@ -145,8 +143,7 @@ class HistoryTest extends TestCase
         $api_key = Str::random('32');
 
         $data = json_decode(file_get_contents(__DIR__ . '/resources/best_sellers_history_test_data.json'),true);
-        $requestArray = ['api-key' => $api_key, 'title' => 'Til Faith Do Us Part: How Interfaith Marriage'];
-        ksort($requestArray);
+        $requestArray = ['title' => 'Til Faith Do Us Part: How Interfaith Marriage', 'api-key' => $api_key];
         $cacheKey = md5(json_encode($requestArray));
 
         Cache::shouldReceive('has')
@@ -160,7 +157,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&title=Til Faith Do Us Part: How Interfaith Marriage');
+        ])->get('/api/1/best-sellers/history?title=Til Faith Do Us Part: How Interfaith Marriage&api-key=' . $api_key);
 
         $response
             ->assertStatus(200)
@@ -175,7 +172,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&offset=15');
+        ])->get('/api/1/best-sellers/history?offset=15&api-key=' . $api_key);
 
         $response->assertStatus(422)->assertJsonStructure([
             'message',
@@ -188,8 +185,7 @@ class HistoryTest extends TestCase
         $api_key = Str::random('32');
 
         $data = json_decode(file_get_contents(__DIR__ . '/resources/best_sellers_history_test_data.json'),true);
-        $requestArray = ['api-key' => $api_key, 'offset' => '20'];
-        ksort($requestArray);
+        $requestArray = ['offset' => '20', 'api-key' => $api_key];
         $cacheKey = md5(json_encode($requestArray));
 
         Cache::shouldReceive('has')
@@ -203,7 +199,7 @@ class HistoryTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->get('/api/1/best-sellers/history?api-key=' . $api_key. '&offset=20');
+        ])->get('/api/1/best-sellers/history?offset=20&api-key=' . $api_key);
 
         $response
             ->assertStatus(200)

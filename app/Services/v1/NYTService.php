@@ -22,8 +22,6 @@ class NYTService
      */
     public function getBestSellersHistory(array $validatedQueryParams):NYTServiceType
     {
-        ksort($validatedQueryParams);
-
         $path = '/svc/books/v3/lists/best-sellers/history.json';
 
         $cacheKey = md5(json_encode($validatedQueryParams));
