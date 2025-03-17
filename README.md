@@ -1,7 +1,7 @@
 ## Step 1: Configure Database
 Create an empty MySQL 8.x database
 
-## Step 1: Configure Environment Variables
+## Step 2: Configure Environment Variables
 Change the corresponing settings in the provided .env file:
 ```
 DB_HOST=127.0.0.1
@@ -12,13 +12,13 @@ DB_PASSWORD=apiapp
 ```
 Copy the provided environment file to the root directory.
 
-## Step 2: Install Dependencies
+## Step 3: Install Dependencies
 Go to project root directory & execute:
 ```sh
 composer install
 ```
 
-## Step 3: Apply database migrations
+## Step 4: Apply database migrations
 Run the following command to apply DB migrations:
 ```sh
 php artisan migrate
